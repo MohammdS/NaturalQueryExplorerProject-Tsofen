@@ -10,13 +10,13 @@ app.use((req, res, next) => {
   next();
 });
 
-// Import bookmark router
-const bookmarkRouter = require('./router/bookmarkRouter');
-app.use('/api/bookmarks', bookmarkRouter);
-
 // Import query router for human language DB queries
-const queryRouter = require('./router/queryRouter');
-app.use('/api/queries', queryRouter);
+/*const queryRouter = require('./router/queryRouter');
+app.use('/api/queries', queryRouter);*/
+
+// Import and use the prompts router
+const promptRouter = require('./routers/promptRouter');
+app.use('/api/prompts', promptRouter);
 
 // Root route
 app.get('/', (req, res) => {
