@@ -7,6 +7,7 @@ const { notFound, errorMiddleware } = require('./middleware/errorMiddleware');
 // Routers
 const dbRouter = require('./routers/dbRouter');
 const promptRouter = require('./routers/promptRouter');
+const userRouter = require('./routers/userRouter');
 
 const app = express();
 
@@ -28,6 +29,7 @@ app.get('/health', (req, res) => {
 // 4) Mount your existing features
 app.use('/api/prompts', promptRouter);
 app.use('/api/dbs', dbRouter);
+app.use('/api/users', userRouter);
 
 // 5) 404 & error handlers — these must come after routes
 app.use(notFound);

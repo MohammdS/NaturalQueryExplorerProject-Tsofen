@@ -1,12 +1,13 @@
 // routers/dbRouter.js
 const express = require('express');
 const { uploadDb } = require('../middleware/fileUploadMiddleware');
+const { protect } = require('../middleware/userMiddleware');
 const dbController = require('../controllers/dbController.js');
 
 const router = express.Router();
 
 // POST /api/dbs  (multipart form-data with field: dbFile)
-router.post('/', (req, res, next) => {
+router.post('/', protect, (req, res, next) => {
   uploadDb(req, res, function (err) {
     if (err) return next(err);           // pass multer errors to errorMiddleware
     if (!req.file) {
